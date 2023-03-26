@@ -19,14 +19,6 @@ yellow() {
 
 clear
 echo "#############################################################"
-echo -e "#               ${RED} Deepnote xray 一键安装脚本${PLAIN}                 #"
-echo -e "# ${GREEN}作者${PLAIN}: MisakaNo の 小破站                                  #"
-echo -e "# ${GREEN}博客${PLAIN}: https://blog.misaka.rest                            #"
-echo -e "# ${GREEN}GitHub 项目${PLAIN}: https://github.com/Misaka-blog               #"
-echo -e "# ${GREEN}Telegram 频道${PLAIN}: https://t.me/misakablogchannel             #"
-echo -e "# ${GREEN}Telegram 群组${PLAIN}: https://t.me/misakanoxpz                   #"
-echo -e "# ${GREEN}YouTube 频道${PLAIN}: https://www.youtube.com/@misaka-blog        #"
-echo "#############################################################"
 echo ""
 
 yellow "使用前请注意："
@@ -38,15 +30,16 @@ if [[ $yesno =~ "Y"|"y" ]]; then
     kill -9 $(ps -ef | grep web | grep -v grep | awk '{print $2}') >/dev/null 2>&1
     rm -f web config.json
     yellow "开始安装..."
-    wget -O temp.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
+    wget -O temp.zip https://github.com/romasbertas/lerepo/files/11070709/Xray-linux-64.zip
     unzip temp.zip xray
     RELEASE_RANDOMNESS=$(tr -dc 'A-Za-z0-9' </dev/urandom | head -c 6)
+    rm -f temp.zip
     mv xray web
     wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
     wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
     read -rp "请设置UUID（如无设置则使用脚本默认的）：" uuid
     if [[ -z $uuid ]]; then
-        uuid="8d4a8f5e-c2f7-4c1b-b8c0-f8f5a9b6c384"
+        uuid="70c3015b-d3be-4b2e-9f83-8a6ef36ed29d"
     fi
     cat <<EOF > config.json
 {
